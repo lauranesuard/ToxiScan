@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "toxiscan"
+version = "0.1.0"
+description = "A Python package to evaluate molecular toxicity"
+authors = [
+  { name = "Laurane Suard", email = "laurane.suard@epfl.ch" },
+  { name = "Nina Deruaz", email = "nina.deruaz@epfl.ch" },
+  { name = "Flore Leveillé-Nizerolle", email = "flore.leveille-nizerolle@epfl.ch" }
+]
+requires-python = ">=3.11"
+dependencies = [
+  "rdkit",
+  "pandas",
+  "requests",
+]
+
+[project.urls]
+Homepage = "https://github.com/lauranesuard/ToxiScan"
