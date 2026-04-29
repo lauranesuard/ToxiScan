@@ -1,4 +1,5 @@
 from rdkit import Chem
+
 TOXICOPHORES = {
     # Nitrogen-based
     "Nitro group":      "[N+](=O)[O-]",
@@ -28,7 +29,26 @@ TOXICOPHORES = {
     "Peroxide":         "OO",
 }
 
-def find_toxicophores(smiles: str) -> dict :
+def find_toxicophores(smiles: str) -> dict:
+    """
+    Detect toxic functional groups (toxicophores) in a molecule.
+    
+    Parameters : 
+        smiles : str
+            the SMILES string of the molecule
+    
+    Returns : 
+        dict
+            a dictionary where keys are toxicophore names and values are 
+            lists of atom indices where the toxicophore was found.
+            Returns an empty dict if no toxicophores are detected.
+    
+    Raises
+    ------
+    ValueError
+        If the SMILES string is invalid.
+    """
+     
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         raise ValueError(f"SMILES invalide : '{smiles}'")
