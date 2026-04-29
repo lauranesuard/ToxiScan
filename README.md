@@ -8,9 +8,15 @@ Given a molecule as input, ToxiScan:
 ## Features
 - **Toxic group detection**: scan of the molecule (SMILES string form) to identitfy the toxic substructures (epoxides, nitroso groups, aldehydes...)
 - **Toxicity scoring**: assignement of a score based on the type, the number, severity of the groups detected
-- **3D visualization**: rent of the final molecule in 3D with the toxic groups highl
-  
+- **3D visualization**: rent of the final molecule in 3D with the toxic groups highlighted in color
 
+## Usage
+## Installation 
+## Run tests and coverage 
+## License
+
+## Authors 
+This projet was developed as part of the practical programming in chemistry's course at EPFL. 
 | Name | Github |
 |------|--------|
 | Laurane Suard | @lauranesuard | 
