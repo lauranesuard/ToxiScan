@@ -11,4 +11,9 @@ Given a molecule as input, ToxiScan:
 - **3D visualization**: rent of the final molecule in 3D with the toxic groups highl
   
 
+| Name | Github |
+|------|--------|
+| Laurane Suard | @lauranesuard | 
+| Flore Leveillé-Nizerolle | @floreln | 
+| Nina Deruaz | @ninaderuaz | 
 
