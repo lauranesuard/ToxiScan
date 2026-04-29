@@ -6,9 +6,9 @@ Given a molecule as input, ToxiScan:
   3. Renders the molecule in 3D for an immersive final visualization
      
 ## Features
-~ **Toxic group detection**: scan of the molecule (SMILES string form) to identitfy the toxic substructures (epoxides, nitroso groups, aldehydes...)
-~ **Toxicity scoring**: assignement of a score based on the type, the number, severity of the groups detected
-~ **3D visualization**: rent of the final molecule in 3D with the toxic groups highl
+- **Toxic group detection**: scan of the molecule (SMILES string form) to identitfy the toxic substructures (epoxides, nitroso groups, aldehydes...)
+- **Toxicity scoring**: assignement of a score based on the type, the number, severity of the groups detected
+- **3D visualization**: rent of the final molecule in 3D with the toxic groups highl
   
 
 
