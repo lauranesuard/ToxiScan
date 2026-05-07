@@ -6,16 +6,23 @@ TOXICOPHORES = {
     "Nitroso group":    "[N]=O",
     "Primary aniline":  "[NH2]c1ccccc1",
     "Hydrazine":        "[NH]-[NH2]",
+    "Aromatic azo":     "c-N=N-c",
+    "N-oxide":          "[N+][O-]",
+    "Hydroxamic acid":  "C(=O)NO",
 
     # Carbonyl-based
-    "Aldehyde":         "[CH]=O",
-    "Acyl halide":      "C(=O)[F,Cl,Br,I]",
-    "Anhydride":        "C(=O)OC(=O)",
+    "Aldehyde":          "[CH]=O",
+    "Acyl halide":       "C(=O)[F,Cl,Br,I]",
+    "Anhydride":         "C(=O)OC(=O)",
+    "Alpha halo ketone": "C(=O)C[F,Cl,Br,I]",
+    "Beta lactone":      "C1CC(=O)O1",
 
     # Electrophilic
     "Epoxide":          "C1OC1",
     "Isocyanate":       "N=C=O",
     "Michael acceptor": "C=CC=O",
+    "Aziridine":        "C1NC1",
+    "Activated alkyne": "C#CC=O",
 
     # Halogen-based
     "Alkyl halide":     "[CX4][F,Cl,Br,I]",
@@ -27,6 +34,13 @@ TOXICOPHORES = {
 
     # Peroxide
     "Peroxide":         "OO",
+
+    #Polycyclic aromatic
+    "Quinone": "O=C1C=CC(=O)C=C1",
+    "Coumarin": "O=C1OC2=CC=CC=C2C=C1",
+
+    #Reactive oxygen
+    "Hydroperoxide": "[OX2][OX2H]",
 }
 
 def find_toxicophores(smiles: str) -> dict:
@@ -48,7 +62,6 @@ def find_toxicophores(smiles: str) -> dict:
     ValueError
         If the SMILES string is invalid.
     """
-     
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         raise ValueError(f"SMILES invalide : '{smiles}'")
