@@ -132,3 +132,45 @@ def compute_properties(smiles: str) -> dict:
         "Donneurs H": Descriptors.NumHDonors(mol),
         "Accepteurs H": Descriptors.NumHAcceptors(mol),
     }
+
+THRESHOLDS = {
+    "log P":              (3, 5),
+    "Poids moléculaire":  (300, 500),
+    "TPSA":               (60, 140),
+    "Donneurs H":         (2, 5),
+    "Accepteurs H":       (5, 10),
+}
+
+def interpret_properties(properties: dict) -> dict:
+    """
+Interprète les propriétés physicochimiques d'une molécule
+et indique si chaque valeur est dans une plage favorable, 
+modérée ou problématique selon les règles de Lipinski.
+
+Parameters
+----------
+properties : dict
+    dictionnaire retourné par compute_properties(), contenant
+    les valeurs de logP, poids moléculaire, TPSA, donneurs H
+    et accepteurs H.
+
+Returns
+-------
+dict
+    dictionnaire avec pour chaque propriété une indication :
+    'insignifiant', 'modéré' ou 'problématique'.
+"""
+    scale = {}
+
+    for name, values in properties.items():
+        low, high = THRESHOLDS[name]
+        if values <= low : 
+            scale[name] = (values, "insignifiant")
+        
+        elif low < values <= high:
+            scale[name] = (values,"modéré")
+        
+        else:
+            scale[name] = (values,"problématique")
+        
+    return scale
