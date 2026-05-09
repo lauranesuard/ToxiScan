@@ -1,4 +1,5 @@
 from rdkit import Chem
+from rdkit.Chem import Descriptors
 from src.toxiscan.toxicophores import find_toxicophores
 
 def remove_redundant_toxicophores(detected_toxicophores: dict) -> dict:
@@ -82,6 +83,19 @@ TOXICOPHORE_WEIGHTS = {
 # les poids sont basés sur la réactivité électrophile connue des groupes fonctionnels
 
 def toxicity_approximation(smiles: str) -> float:
+    """
+    Calcule la toxicité de la molécule
+    
+    Parameters
+    ----------
+    smiles : str
+        SMILES de la molécule à analyser.
+    
+    Returns
+    -------
+    float
+        Toxicité de la molécule par rapport à sa taille.
+    """
     clean_toxicophores = remove_redundant_toxicophores(find_toxicophores(smiles))
     score = 0
 
@@ -92,3 +106,29 @@ def toxicity_approximation(smiles: str) -> float:
     score = score / number_atoms 
     
     return score
+
+def compute_properties(smiles: str) -> dict:
+    """
+    Donne des informations complémeentaires sur la toxicité de la molécule
+    
+    Parameters
+    ----------
+    smiles : str
+        SMILES de la molécule à analyser.
+    
+    Returns
+    -------
+    dict
+        dictionnaire qui affichera 4 nouvelles propriétés pour chaque molécule
+    """
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is None:
+        raise ValueError(f"SMILES invalide : '{smiles}'")
+    
+    return {
+        "log P": Descriptors.MolLogP(mol),
+        "Poids moléculaire": Descriptors.MolWt(mol),
+        "TPSA": Descriptors.TPSA(mol),
+        "Donneurs H": Descriptors.NumHDonors(mol),
+        "Accepteurs H": Descriptors.NumHAcceptors(mol),
+    }
