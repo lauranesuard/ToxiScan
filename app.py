@@ -1,13 +1,10 @@
 import streamlit as st
-from rdkit import Chem
-from rdkit.Chem import Draw, AllChem
-import py3Dmol
 import sys
 sys.path.insert(0, '.')
 from src.toxiscan.molecule import get_smiles
 from src.toxiscan.toxicophores import find_toxicophores
 from src.toxiscan.scoring import remove_redundant_toxicophores
-from src.toxiscan.visualization import draw_molecule
+from src.toxiscan.visualization import draw_molecule, draw_molecule_3d
 
 st.set_page_config(page_title="ToxiScan", layout="wide")
 st.title("🧪 ToxiScan — Molecular Toxicity Analyzer")
@@ -35,14 +32,5 @@ if molecule_name:
         # 3D visualization
         with col2:
             st.subheader("3D Structure")
-            mol = Chem.MolFromSmiles(smiles)
-            mol = Chem.AddHs(mol)
-            AllChem.EmbedMolecule(mol, randomSeed=42)
-            AllChem.MMFFOptimizeMolecule(mol)
-            mol_block = Chem.MolToMolBlock(mol)
-            
-            viewer = py3Dmol.view(width=400, height=400)
-            viewer.addModel(mol_block, "mol")
-            viewer.setStyle({"stick": {}})
-            viewer.zoomTo()
-            st.components.v1.html(viewer._make_html(), height=400)
+            html_3d = draw_molecule_3d(smiles, tox_clean)
+            st.components.v1.html(html_3d, height=400)
