@@ -5,7 +5,7 @@ from IPython.display import display, Image
 
 def draw_molecule(smiles: str, toxicophores_found: dict) -> None:
     """
-    Draw a molecule with toxic fragments highlighted in red.
+    Draw a molecule with toxic fragments highlighted in yellow-green.
     
     Parameters : 
         smiles : str
@@ -18,7 +18,6 @@ def draw_molecule(smiles: str, toxicophores_found: dict) -> None:
         None
             Displays the molecule image inline
     """
-    
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         raise ValueError(f"Invalid SMILES: '{smiles}'")
@@ -28,8 +27,20 @@ def draw_molecule(smiles: str, toxicophores_found: dict) -> None:
     for indices in toxicophores_found.values():
         highlight_atoms.extend(indices)
     highlight_atoms = list(set(highlight_atoms))
+
+    # Draw with black atoms and yellow-green highlights
+    drawer = rdMolDraw2D.MolDraw2DSVG(400, 300)
+    drawer.drawOptions().addAtomIndices = False
+    drawer.drawOptions().useBWAtomPalette()
     
-    # Draw molecule
-    img = Draw.MolToImage(mol, size=(400, 300), highlightAtoms=highlight_atoms)
-    img.save("molecule.png")
-    display(Image("molecule.png"))
+    highlight_color = {atom: (0.6, 0.9, 0.2) for atom in highlight_atoms}
+    
+    drawer.DrawMolecule(mol, 
+                        highlightAtoms=highlight_atoms,
+                        highlightAtomColors=highlight_color,
+                        highlightBonds=[])
+    drawer.FinishDrawing()
+    
+    svg = drawer.GetDrawingText()
+    with open("molecule.svg", "w") as f:
+        f.write(svg)
