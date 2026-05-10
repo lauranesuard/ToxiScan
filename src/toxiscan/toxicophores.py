@@ -11,7 +11,7 @@ TOXICOPHORES = {
     "Hydroxamic acid":  "C(=O)NO",
 
     # Carbonyl-based
-    "Aldehyde":          "[CH]=O",
+    "Aldehyde":          "[CX3;H1,H2](=O)",
     "Acyl halide":       "C(=O)[F,Cl,Br,I]",
     "Anhydride":         "C(=O)OC(=O)",
     "Alpha halo ketone": "C(=O)C[F,Cl,Br,I]",
