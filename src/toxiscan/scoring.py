@@ -4,17 +4,17 @@ from src.toxiscan.toxicophores import find_toxicophores
 
 def remove_redundant_toxicophores(detected_toxicophores: dict) -> dict:
     """
-    Renvoie le dictionnaire de tous les groupes distincts trouvés dans une molécule.
+    Returns a dictionary of all distinct groups found in a molecule.
     
     Parameters
     ----------
     found : dict
-        les groupes toxicophores détectés par find_toxicophores
+        the toxicophore groups detected by find_toxicophores
     
     Returns
     -------
     dict
-        le nouveau dictionnaire sans les groupes detectés plusieurs fois par erreur
+        the new dictionary without the groups detected multiple times by mistake
     """
     redundant = []
     for name_A, atoms_A in detected_toxicophores.items():
@@ -30,17 +30,17 @@ def remove_redundant_toxicophores(detected_toxicophores: dict) -> dict:
 
 def count_toxicophores(smiles: str) -> int:
     """
-    Compte le nombre de toxicophores détectés dans une molécule.
+    Counts the number of toxicophores detected in a molecule.
     
     Parameters
     ----------
     smiles : str
-        SMILES de la molécule à analyser.
+        SMILES string of the molecule to be analysed.
     
     Returns
     -------
     int
-        Nombre de toxicophores trouvés.
+        Number of toxicophores found.
     """
     return len(remove_redundant_toxicophores(find_toxicophores(smiles)))
 
@@ -84,17 +84,17 @@ TOXICOPHORE_WEIGHTS = {
 
 def toxicity_approximation(smiles: str) -> float:
     """
-    Calcule la toxicité de la molécule
+    Calculates the toxicity of the molecule
     
     Parameters
     ----------
     smiles : str
-        SMILES de la molécule à analyser.
+        SMILES string for the molecule to be analysed.
     
     Returns
     -------
     float
-        Toxicité de la molécule par rapport à sa taille.
+        Toxicity of the molecule relative to its size.
     """
     clean_toxicophores = remove_redundant_toxicophores(find_toxicophores(smiles))
     score = 0
@@ -109,17 +109,17 @@ def toxicity_approximation(smiles: str) -> float:
 
 def compute_properties(smiles: str) -> dict:
     """
-    Donne des informations complémeentaires sur la toxicité de la molécule
+    Provides additional information on the toxicity of the molecule
     
     Parameters
     ----------
     smiles : str
-        SMILES de la molécule à analyser.
+        SMILES string for the molecule to be analysed.
     
     Returns
     -------
     dict
-        dictionnaire qui affichera 4 nouvelles propriétés pour chaque molécule
+        dictionary containing 4 new properties for each molecule
     """
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
@@ -143,23 +143,24 @@ THRESHOLDS = {
 
 def interpret_properties(properties: dict) -> dict:
     """
-Interprète les propriétés physicochimiques d'une molécule
-et indique si chaque valeur est dans une plage favorable, 
-modérée ou problématique selon les règles de Lipinski.
+    Interprets the physicochemical properties of a molecule
+    and indicates whether each value falls within a favourable, 
+    moderate or problematic range according to Lipinski’s rules.
 
-Parameters
-----------
-properties : dict
-    dictionnaire retourné par compute_properties(), contenant
-    les valeurs de logP, poids moléculaire, TPSA, donneurs H
-    et accepteurs H.
+    Parameters
+    ----------
+    properties : dict
+        dictionary returned by compute_properties(), containing
+        the values for logP, molecular weight, TPSA, H donors
+        and H acceptors.
 
-Returns
--------
-dict
-    dictionnaire avec pour chaque propriété une indication :
-    'insignifiant', 'modéré' ou 'problématique'.
-"""
+    Returns
+    -------
+    dict
+        dictionary with an indication for each property:
+        “insignificant”, “moderate” or “problematic”.
+    """
+
     scale = {}
 
     for name, values in properties.items():
@@ -168,9 +169,10 @@ dict
             scale[name] = (values, "insignifiant")
         
         elif low < values <= high:
-            scale[name] = (values,"modéré")
+            scale[name] = (values,"moderate")
         
         else:
-            scale[name] = (values,"problématique")
+            scale[name] = (values,"problematic")
         
     return scale
+
