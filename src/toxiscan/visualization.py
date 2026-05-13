@@ -70,7 +70,7 @@ def draw_molecule_3d(smiles: str, toxicophores_found: dict) -> str:
     # Generate 3D coordinates
     mol = Chem.AddHs(mol)
     AllChem.EmbedMolecule(mol, randomSeed=42)
-    AllChem.MMFFOptimizeMolecule(mol)
+
     mol = Chem.RemoveHs(mol) 
     mol_block = Chem.MolToMolBlock(mol)
     

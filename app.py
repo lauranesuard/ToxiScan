@@ -2,10 +2,9 @@ import streamlit as st
 import sys
 sys.path.insert(0, '.')
 import pandas as pd
-from src.toxiscan.scoring import toxicity_approximation, compute_properties, interpret_properties, TOXICOPHORE_WEIGHTS
+from src.toxiscan.scoring import  remove_redundant_toxicophores, toxicity_approximation, compute_properties, interpret_properties, TOXICOPHORE_WEIGHTS, properties_toxicity
 from src.toxiscan.molecule import get_smiles
 from src.toxiscan.toxicophores import find_toxicophores
-from src.toxiscan.scoring import remove_redundant_toxicophores
 from src.toxiscan.visualization import draw_molecule, draw_molecule_3d
 
 st.set_page_config(page_title="ToxiScan", layout="wide")
@@ -50,7 +49,7 @@ if molecule_name:
             st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
 
         st.divider()
-        st.subheader("☠️ Toxicity Score")
+        st.subheader("☠️ Toxicity Score based on toxic groups")
 
         score = toxicity_approximation(smiles)
 
@@ -76,3 +75,23 @@ if molecule_name:
         cols = st.columns(5)
         for col, (name, (value, level)) in zip(cols, interpreted.items()):
             col.metric(label=name, value=round(value, 2), delta=level, delta_color="off")
+
+        st.divider()
+        st.subheader("☠️ Toxicity Score based on lipinski properties")
+
+        lipinski_score = properties_toxicity(interpreted)
+
+        if lipinski_score == 0:
+            level, icon = "Non-toxic", "🟢"
+        elif lipinski_score < 0.25:
+            level, icon = "Low toxicity", "🟡"
+        elif lipinski_score < 0.5:
+            level, icon = "Moderate toxicity", "🟠"
+        elif lipinski_score < 0.75:
+            level, icon = "High toxicity", "🔴"
+        else:
+            level, icon = "Very high toxicity", "🔴"
+
+        st.metric("Score", f"{lipinski_score:.3f}")
+        st.progress(lipinski_score, text=f"{icon} {level}")
+        

@@ -176,3 +176,16 @@ def interpret_properties(properties: dict) -> dict:
         
     return scale
 
+SCALE_WEIGHTS = {
+    "insignifiant": 1,
+    "moderate": 2,
+    "problematic": 3,
+}
+
+def properties_toxicity (interpreted: dict) -> float:
+    somme = 0
+    for name, (value,level) in interpreted.items():
+        somme += SCALE_WEIGHTS[level] 
+
+    score_lipinski = (somme - 5) / 10
+    return score_lipinski 
