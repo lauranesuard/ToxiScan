@@ -183,6 +183,21 @@ SCALE_WEIGHTS = {
 }
 
 def properties_toxicity (interpreted: dict) -> float:
+
+    """
+    Calculates a toxicity score based on physicochemical properties.
+    
+    Parameters
+    ----------
+    interpreted : dict
+        Dictionary returned by interpret_properties(), containing
+        the interpretation of each property.
+    
+    Returns
+    -------
+    float
+        A toxicity score based on Lipinski's rules.
+    """
     somme = 0
     for name, (value,level) in interpreted.items():
         somme += SCALE_WEIGHTS[level] 
