@@ -114,15 +114,18 @@ You should see all tests passing:
 If you encounter any issue while using ToxiScan, here are the most common problems and their solutions.
 
 **`ModuleNotFoundError: No module named 'toxiscan'`**
+
 Make sure you have installed the package in editable mode:
 ```bash
 pip install -e .
 ```
 
 **Molecule not found in PubChem**
+
 Check the spelling of the molecule name. ToxiScan only accepts names recognized by PubChem (e.g. "aspirin", "caffeine"). Try the common English name of the molecule.
 
 **Environment issues**
+
 If `conda env create -f environment.yml` fails, create the environment manually:
 ```bash
 conda create -n toxiscan-env python=3.11
@@ -133,6 +136,7 @@ pip install py3dmol
 ```
 
 **Streamlit app not launching**
+
 Make sure you are in the project root directory and that the environment is activated before running `streamlit run app.py`.
 
 ## License 📜
