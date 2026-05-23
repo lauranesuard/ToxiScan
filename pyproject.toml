@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=64", "setuptools-scm"]
-build-backend = "setuptools.backends.legacy:build"
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "toxiscan"
@@ -16,7 +16,12 @@ dependencies = [
   "rdkit",
   "pandas",
   "requests",
+  "streamlit",
+  "py3dmol",
 ]
 
 [project.urls]
 Homepage = "https://github.com/lauranesuard/ToxiScan"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
