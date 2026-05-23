@@ -112,6 +112,7 @@ You should see all tests passing:
 
 ## Troubleshooting 🔧
 If you encounter any issue while using ToxiScan, here are the most common problems and their solutions.
+
 **`ModuleNotFoundError: No module named 'toxiscan'`**
 Make sure you have installed the package in editable mode:
 ```bash
