@@ -1,7 +1,11 @@
 from unittest.mock import patch, MagicMock
-from src.toxiscan.molecule import get_smiles, get_molecule_info
+from toxiscan.molecule import get_smiles, get_molecule_info
 
 def test_gets_smiles_found(): 
+    """
+    Test that get_smiles returns the correct SMILES string
+    when the molecule is found in PubChem.
+    """
     mock_response = MagicMock()    # création du faux objet, MagicMock s'applique à ce qu'on met dans notre fonction
     mock_response.status_code = 200 # fais semblant d'avoir réussi
     mock_response.json.return_value = {
@@ -14,6 +18,10 @@ def test_gets_smiles_found():
         assert result == "CC(=O)Oc1ccccc1C(=O)O"
 
 def test_get_smiles_not_found():
+    """
+    Test that get_smiles returns an error message containing 'not found'
+    when the molecule does not exist in PubChem.
+    """
     mock_response = MagicMock()
     mock_response.status_code = 404
     with patch("src.toxiscan.molecule.requests.get", return_value=mock_response):
@@ -21,6 +29,10 @@ def test_get_smiles_not_found():
         assert "not found" in result
 
 def test_get_molecule_info_found():
+    """
+    Test that get_molecule_info returns a complete dictionary
+    with correct molecular information when the molecule is found.
+    """
     mock_response = MagicMock()
     mock_response.status_code = 200
     mock_response.json.return_value = {
@@ -42,6 +54,10 @@ def test_get_molecule_info_found():
         assert result["smiles"] == "CC(=O)Oc1ccccc1C(=O)O"
 
 def test_get_molecule_info_not_found():
+    """
+    Test that get_molecule_info returns a dictionary containing
+    an 'error' key when the molecule is not found in PubChem.
+    """
     mock_response = MagicMock()
     mock_response.status_code = 404
     with patch("src.toxiscan.molecule.requests.get", return_value=mock_response):
