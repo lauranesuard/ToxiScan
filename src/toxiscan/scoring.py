@@ -127,18 +127,18 @@ def compute_properties(smiles: str) -> dict:
     
     return {
         "log P": Descriptors.MolLogP(mol),
-        "Poids moléculaire": Descriptors.MolWt(mol),
+        "Molecular weigh": Descriptors.MolWt(mol),
         "TPSA": Descriptors.TPSA(mol),
-        "Donneurs H": Descriptors.NumHDonors(mol),
-        "Accepteurs H": Descriptors.NumHAcceptors(mol),
+        "H Donors": Descriptors.NumHDonors(mol),
+        "H Acceptors": Descriptors.NumHAcceptors(mol),
     }
 
 THRESHOLDS = {
     "log P":              (3, 5),
-    "Poids moléculaire":  (300, 500),
+    "Molecular weigh":  (300, 500),
     "TPSA":               (60, 140),
-    "Donneurs H":         (2, 5),
-    "Accepteurs H":       (5, 10),
+    "H Donors":         (2, 5),
+    "H Acceptors":       (5, 10),
 }
 
 def interpret_properties(properties: dict) -> dict:

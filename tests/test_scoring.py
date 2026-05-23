@@ -75,10 +75,10 @@ def test_compute_properties():
     """
     result = compute_properties("CC(=O)Oc1ccccc1C(=O)O")
     assert result["log P"] == 1.3101
-    assert result["Poids moléculaire"] == 180.15899999999996
+    assert result["Molecular weigh"] == 180.15899999999996
     assert result["TPSA"] == 63.60000000000001
-    assert result["Donneurs H"] == 1
-    assert result["Accepteurs H"] == 3
+    assert result["H Donors"] == 1
+    assert result["H Acceptors"] == 3
 
 def test_interpret_properties_insignifiant():
     """
@@ -111,10 +111,10 @@ def test_properties_toxicity():
     """
     input_dict = {
         "log P":             (1.0, "insignifiant"),
-        "Poids moléculaire": (100, "insignifiant"),
+        "Molecular weigh": (100, "insignifiant"),
         "TPSA":              (30,  "insignifiant"),
-        "Donneurs H":        (1,   "insignifiant"),
-        "Accepteurs H":      (2,   "insignifiant"),
+        "H Donors":        (1,   "insignifiant"),
+        "H Acceptors":      (2,   "insignifiant"),
     }
     result = properties_toxicity(input_dict)
     assert result == 0.0
