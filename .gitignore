@@ -220,3 +220,6 @@ __marimo__/
 # Generated images
 *.png
 *.svg
+
+# Exception for assets folder
+!assets/*.png
