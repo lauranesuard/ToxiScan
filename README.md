@@ -125,7 +125,7 @@ pip install -e .
 
 **Molecule not found in PubChem**
 
-Check the spelling of the molecule name. ToxiScan only accepts names recognized by PubChem (e.g. "aspirin", "caffeine"). Try the common English name of the molecule.
+ToxiScan accepts molecule common names, IUPAC names, or CAS numbers as recognized by PubChem (e.g. "aspirin", "2-acetyloxybenzoic acid", "50-78-2"). If your molecule is not found, check the spelling or try one of these alternative formats.
 
 **Environment issues**
 
