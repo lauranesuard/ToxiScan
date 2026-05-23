@@ -29,6 +29,25 @@ This project was developed as part of the *Practical Programming in Chemistry* c
 - **Streamlit app**: user-friendly interface to analyze any molecule in seconds
 
 ## Installation 💻
+First, clone the repository and navigate into the project directory:
+
+```bash
+git clone https://github.com/lauranesuard/ToxiScan.git
+cd ToxiScan
+```
+
+Then, create and activate the conda environment:
+
+```bash
+conda env create -f environment.yml
+conda activate toxiscan-env
+```
+
+Finally, install the package in editable mode:
+
+```bash
+pip install -e .
+```
 
 ## Requirements 📝
 
