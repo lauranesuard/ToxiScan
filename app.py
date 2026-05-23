@@ -10,7 +10,7 @@ from src.toxiscan.visualization import draw_molecule, draw_molecule_3d
 st.set_page_config(page_title="ToxiScan", layout="wide")
 st.title("🧪 ToxiScan — Molecular Toxicity Analyzer")
 
-molecule_name = st.text_input("Enter a molecule name:", placeholder="e.g. aspirin, caffeine, ethanol", key="molecule_input")
+molecule_name = st.text_input("Enter a molecule name, IUPAC name or CAS number:", placeholder="e.g. aspirin, 2-acetyloxybenzoic acid, 50-78-2", key="molecule_input")
 
 if molecule_name:
     smiles = get_smiles(molecule_name)
