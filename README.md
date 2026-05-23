@@ -90,8 +90,12 @@ The app allows you to:
 - Explore the **interactive 3D structure** with py3Dmol
 - See the **toxicity scores** — based on detected toxicophores and physicochemical properties (Lipinski's rules)
 
-[screenshot de l'app ici]
-![ToxiScan App](assets/screenshot.png)
+Here is an example of ToxiScan's output for **chlorambucil** : 
+
+![2D and 3D structures](assets/chlorambucil_2d_3d.png)
+![Toxicity Score based on toxic groups](assets/chlorambucil_toxicity_score_1.png)
+![Toxicity Score based on lipinski properties](assets/clorambucil_toxicity_score_2.png)
+
 
 ## Run tests ✅
 To run the test suite, execute the following command from the project directory:
