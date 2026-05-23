@@ -1,6 +1,7 @@
 # ToxiScan 🧪
-[logo/banner]
-[badges]
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 
 ## Package description 📖
 **ToxiScan** is a Python package designed to evaluate the toxicity of molecules, aimed at chemists, students, and researchers who need fast and visual toxicity insights.
@@ -74,6 +75,7 @@ pip install py3dmol
 ```
 
 ## Usage 🚀
+ToxiScan provides functions to retrieve molecular data, detect toxicophores, compute toxicity scores, and visualize molecules in 2D and 3D. For a complete example with code and visualizations, refer to the [project notebook](notebooks/report.ipynb).
 
 ## Interface 🌐
 ToxiScan comes with a **Streamlit app** that provides an interactive interface to analyze any molecule visually.
