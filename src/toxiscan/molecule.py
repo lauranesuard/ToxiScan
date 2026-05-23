@@ -7,6 +7,9 @@ def get_smiles(molecule_name: str) -> str:
     ----------
     molecule_name : str
         The name of the molecule (e.g. "aspirin", "caffeine")
+    molecule_name : str
+        The name, IUPAC name, or CAS number of the molecule 
+        (e.g. "aspirin", "2-acetyloxybenzoic acid", "50-78-2")
     
     Returns
     -------
