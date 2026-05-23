@@ -1,25 +1,64 @@
-# ToxiScan
-**ToxiScan** is a python package to evaluate molecular toxicity, designed for chemists, students, and researchers who need fast and visual toxicity insights.
-Given a molecule as input, ToxiScan: 
-  1. Converts it into a SMILES string and identifies toxic functional groups
-  2. Computes a toxicity score based on the detected substructures
-  3. Renders the molecule in 3D for an immersive final visualization
-     
-## Features
-- **Toxic group detection**: scan of the molecule (SMILES string form) to identitfy the toxic substructures (epoxides, nitroso groups, aldehydes...)
-- **Toxicity scoring**: assignement of a score based on the type, the number, severity of the groups detected
-- **3D visualization**: rent of the final molecule in 3D with the toxic groups highlighted in color
+# ToxiScan 🧪
+[logo/banner]
+[badges]
 
-## Usage
-## Installation 
-## Run tests and coverage 
-## License
+## Package description 📖
+**ToxiScan** is a Python package designed to evaluate the toxicity of molecules, aimed at chemists, students, and researchers who need fast and visual toxicity insights.
 
-## Authors 
-This projet was developed as part of the practical programming in chemistry's course at EPFL. 
-| Name | Github |
+Given a molecule name as input, ToxiScan:
+  1. Retrieves its SMILES representation from the **PubChem** database
+  2. Detects toxic functional groups via **SMARTS pattern matching**
+  3. Visualizes the molecule in **2D and 3D** with toxic fragments highlighted in green
+  4. Computes a **toxicity score** based on detected toxicophores and physicochemical properties
+
+## Authors 🧑‍🎓
+This project was developed as part of the *Practical Programming in Chemistry* course at EPFL.
+
+| Name | GitHub |
 |------|--------|
-| Laurane Suard | @lauranesuard | 
-| Flore Leveillé-Nizerolle | @floreln | 
-| Nina Deruaz | @ninaderuaz | 
+| Laurane Suard | [@lauranesuard](https://github.com/lauranesuard) |
+| Flore Leveillé-Nizerolle | [@floreln](https://github.com/floreln) |
+| Nina Deruaz | [@ninaderuaz](https://github.com/ninaderuaz) |
+
+## Features 🔬
+
+- **Toxicophore detection**: scan of the molecule (SMILES string form) to identify the toxic substructures (epoxides, nitro groups, aldehydes...)
+- **Toxicity scoring**: normalized score based on type and severity of detected toxicophores, combined with physicochemical properties (Lipinski's rules)
+- **2D visualization**: molecule drawn in black and white with toxic atoms highlighted in green
+- **3D interactive visualization**: rotate and zoom on the molecule with py3Dmol, toxic atoms highlighted in green
+- **Streamlit app**: user-friendly interface to analyze any molecule in seconds
+
+## Installation 💻
+First, clone the repository and navigate into the project directory:
+
+```bash
+git clone https://github.com/lauranesuard/ToxiScan.git
+cd ToxiScan
+```
+
+Then, create and activate the conda environment:
+
+```bash
+conda env create -f environment.yml
+conda activate toxiscan-env
+```
+
+Finally, install the package in editable mode:
+
+```bash
+pip install -e .
+```
+
+## Requirements 📝
+
+## Usage 🚀
+
+## Interface 🌐
+[screenshots Streamlit]
+
+## Run tests ✅
+
+## Troubleshooting 🔧
+
+## License 📜
 
