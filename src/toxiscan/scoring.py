@@ -1,6 +1,6 @@
 from rdkit import Chem
 from rdkit.Chem import Descriptors
-from src.toxiscan.toxicophores import find_toxicophores
+from .toxicophores import find_toxicophores
 
 def remove_redundant_toxicophores(detected_toxicophores: dict) -> dict:
     """
