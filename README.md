@@ -60,6 +60,8 @@ ToxiScan requires Python 3.11. The following packages are needed:
 - `py3dmol`
 - `ipython`
 - `pytest`
+- `tox`
+- `ipykernel`
 
 If the installation completes successfully, all required packages should be installed automatically via the `environment.yml` file. To verify that everything is correctly set up, run:
 
@@ -71,7 +73,7 @@ If any package is missing, install them manually:
 
 ```bash
 conda install -c conda-forge rdkit
-conda install requests streamlit pytest ipython
+conda install requests streamlit pytest ipython ipykernel tox
 pip install py3dmol
 ```
 
@@ -101,10 +103,15 @@ Here is an example of ToxiScan's output for **chlorambucil** :
 
 
 ## Run tests ✅
-To run the test suite, execute the following command from the project directory:
+To run the test suite manually, execute the following command from the project directory:
 
 ```bash
 python -m pytest tests/
+```
+Or using tox:
+
+```bash
+tox
 ```
 
 You should see all tests passing:
